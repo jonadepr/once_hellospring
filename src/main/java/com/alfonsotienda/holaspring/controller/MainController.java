@@ -58,6 +58,28 @@ public class MainController {
         return modelAndView;
     }
 
+
+    @GetMapping("/preguntas")
+    public ModelAndView preguntasHTML() {
+        ModelAndView modelAndView = new ModelAndView("preguntas");
+        modelAndView.addObject("mensaje", "");
+        return modelAndView;
+    }
+
+    @PostMapping("/preguntas")
+    public ModelAndView preguntasHTMLPost(@RequestParam("respuesta1") String respuesta1,
+            @RequestParam("respuesta2") String respuesta2,
+            @RequestParam("respuesta3") String respuesta3) {
+        ModelAndView modelAndView = new ModelAndView("preguntas");
+        String resultado = "¿De que color es el caballo blanco de Santiago? "+respuesta1+"\n¿Ultimo libro leido? "+respuesta2+"\n¿Color favorito? "+respuesta3;
+
+        modelAndView.addObject("mensaje", resultado);
+
+        return modelAndView;
+    }
+
+
+
     private String calcula(Integer operando1, String operacion, Integer operando2) {
         double resultado = 0.0;
         switch (operacion) {

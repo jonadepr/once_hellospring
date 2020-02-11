@@ -1,0 +1,25 @@
+<html>
+
+    <head>
+        <title>
+            Preguntas
+        </title>
+    </head>
+
+    <body>
+
+        <p th:text="${mensaje}"></p>
+
+        <h3>Preguntas</h3>
+
+
+        <form action="/preguntas" method="POST">
+            ¿De que color es el caballo blanco de Santiago?: <input type="text" name="respuesta1">
+            ¿Ultimo libro leido?: <input type="text" name="respuesta2">
+            ¿Color favorito?: <input type="text" name="respuesta3">
+            <input type="submit">
+        </form>
+
+    </body>
+    
+</html>
