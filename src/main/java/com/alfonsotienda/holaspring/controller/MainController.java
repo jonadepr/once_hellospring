@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import java.sql.Statement;
-import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 
 
 /**
