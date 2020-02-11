@@ -1,0 +1,25 @@
+<html>
+
+    <head>
+        <title>
+            Insertar en Base de Datos
+        </title>
+    </head>
+
+    <body>
+
+        <p th:text="${mensaje}"></p>
+
+        <h3>Insertar en Base de Datos</h3>
+
+
+        <form action="/insertar" method="POST">
+            Nombre: <input type="text" name="nombre">
+            Apellidos: <input type="text" name="apellidos">
+            Edad: <input type="text" name="edad">
+            <input type="submit">
+        </form>
+
+    </body>
+    
+</html>

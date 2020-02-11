@@ -1,14 +1,17 @@
 package com.alfonsotienda.holaspring.controller;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-
-import org.aspectj.apache.bcel.classfile.Module.Require;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import java.sql.Statement;
+import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+
 
 /**
  * MainController
@@ -74,6 +77,60 @@ public class MainController {
         String resultado = "¿De que color es el caballo blanco de Santiago? "+respuesta1+"\n¿Ultimo libro leido? "+respuesta2+"\n¿Color favorito? "+respuesta3;
 
         modelAndView.addObject("mensaje", resultado);
+
+        return modelAndView;
+    }
+
+    
+    @GetMapping("/insertar")
+    public ModelAndView insertarHTML() {
+        ModelAndView modelAndView = new ModelAndView("insertar");
+        modelAndView.addObject("mensaje", "");
+        return modelAndView;
+    }
+
+    @PostMapping("/insertar")
+    public ModelAndView insertarHTMLPost(@RequestParam("nombre") String nombre,
+            @RequestParam("apellidos") String apellidos,
+            @RequestParam("edad") String edad) throws Exception{
+        ModelAndView modelAndView = new ModelAndView("insertar");
+            // JDBC driver name and database URL
+        final String JDBC_DRIVER = "com.mysql.jdbc.jdbc2.optional.MysqlDataSource";
+        final String DB_URL = "jdbc:mysql://iprocuratio.com:3333/joseN";
+
+        // Database credentials
+        final String USER = "root";
+        final String PASS = "once012020";
+        Connection conn = null;
+        Statement stmt = null;
+
+        // Register JDBC driver
+        Class.forName(JDBC_DRIVER);
+
+        // Open a connection
+        System.out.println("Connecting to database...");
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        // Execute a query
+        System.out.println("Creating statement...");
+        stmt = conn.createStatement();
+
+        stmt.executeUpdate(
+            "CREATE TABLE if not exists Employees ( id INT(11) PRIMARY KEY, first VARCHAR(256),  last VARCHAR(256),age INTEGER);");
+        stmt.executeUpdate("INSERT ignore INTO Employees VALUES(1,'Jack','Smith', 100);");
+
+            stmt.executeUpdate(
+                "INSERT ignore INTO Employees(first, last, age) VALUES('" + nombre + "','" + apellidos + "'," + edad + ");");
+        // Clean-up environment
+
+        stmt.close();
+        conn.close();
+ 
+
+    
+
+        String resultado = "INSERT ignore INTO Employees(first, last, age) VALUES('" + nombre + "','" + apellidos + "'," + edad + ");";
+
+        modelAndView.addObject("mensaje", "INSERTADO MEDIANTE"+resultado);
 
         return modelAndView;
     }
