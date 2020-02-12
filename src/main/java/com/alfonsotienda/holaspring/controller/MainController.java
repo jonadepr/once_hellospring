@@ -99,7 +99,6 @@ public class MainController {
         jdbcTemplate.update("INSERT ignore INTO Employees(first, last, age) VALUES(?,?,?)",
         nombre, apellidos, Integer.parseInt(edad));
 
-
         String resultado = "INSERT ignore INTO Employees(first, last, age) VALUES('" + nombre + "','" + apellidos + "'," + edad + ");";
 
         modelAndView.addObject("mensaje", "INSERTADO MEDIANTE "+resultado);
