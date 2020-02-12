@@ -102,7 +102,7 @@ public class MainController {
 
         String resultado = "INSERT ignore INTO Employees(first, last, age) VALUES('" + nombre + "','" + apellidos + "'," + edad + ");";
 
-        modelAndView.addObject("mensaje", "INSERTADO MEDIANTE"+resultado);
+        modelAndView.addObject("mensaje", "INSERTADO MEDIANTE "+resultado);
 
         return modelAndView;
     }
